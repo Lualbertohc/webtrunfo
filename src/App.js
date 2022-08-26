@@ -12,6 +12,7 @@ class App extends React.Component {
     attr3: '',
     options: 'normal',
     confirm: false,
+    btn: true,
   };
 
   handleChange = ({ target }) => {
@@ -19,12 +20,39 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
+    }, () => this.handleButton());
+  };
+
+  handleButton = () => {
+    const { name, description, image, attr1, attr2, attr3 } = this.state;
+
+    const validateNotEmpty = name.length > 0
+      && description.length > 0
+      && image.length > 0;
+
+    const maxNumerSum = 210;
+    const sum = Number(attr1) + Number(attr2) + Number(attr3);
+    const valudateSum = sum < maxNumerSum;
+
+    const maxNumer = 90;
+    const verifyAttr1LessMax = attr1 <= maxNumer && attr1 > 0;
+    const verifyAttr2LessMax = attr2 <= maxNumer && attr2 > 0;
+    const verifyAttr3LessMax = attr3 <= maxNumer && attr3 > 0;
+    const ferifyImputsAttr = verifyAttr1LessMax
+    && verifyAttr2LessMax
+    && verifyAttr3LessMax;
+
+    const verifyBtn = validateNotEmpty && valudateSum && ferifyImputsAttr;
+
+    this.setState({
+      btn: !verifyBtn,
     });
   };
 
   render() {
     const { name, description, image, confirm, options } = this.state;
     const { attr1, attr2, attr3 } = this.state;
+    const { btn } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -37,7 +65,9 @@ class App extends React.Component {
           cardAttr3={ attr3 }
           cardRare={ options }
           cardTrunfo={ confirm }
+          isSaveButtonDisabled={ btn }
           onInputChange={ this.handleChange }
+          onSaveButtonClick={ this.handleButton }
         />
         <Card
           cardName={ name }

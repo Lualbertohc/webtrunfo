@@ -9,6 +9,7 @@ class Form extends React.Component {
     return (
       <form>
         <label htmlFor="name">
+          Nome:
           <input
             data-testid="name-input"
             id="name"
@@ -18,6 +19,7 @@ class Form extends React.Component {
             onChange={ onInputChange }
           />
         </label>
+        Descrição:
         <label htmlFor="description">
           <input
             data-testid="description-input"
@@ -28,6 +30,7 @@ class Form extends React.Component {
             onChange={ onInputChange }
           />
         </label>
+        Atributo 1:
         <label htmlFor="attr1">
           <input
             data-testid="attr1-input"
@@ -38,6 +41,7 @@ class Form extends React.Component {
             onChange={ onInputChange }
           />
         </label>
+        Atributo 2:
         <label htmlFor="attr2">
           <input
             data-testid="attr2-input"
@@ -48,6 +52,7 @@ class Form extends React.Component {
             onChange={ onInputChange }
           />
         </label>
+        Atributo 3:
         <label htmlFor="attr3">
           <input
             data-testid="attr3-input"
@@ -59,6 +64,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="image">
+          Imagem:
           <input
             data-testid="image-input"
             id="image"
@@ -69,6 +75,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="rare">
+          Raridade:
           <select
             data-testid="rare-input"
             id="rare"
@@ -82,6 +89,7 @@ class Form extends React.Component {
           </select>
         </label>
         <label htmlFor="trunfo">
+          Trunfo:
           <input
             data-testid="trunfo-input"
             id="trunfo"
@@ -91,15 +99,15 @@ class Form extends React.Component {
             onChange={ onInputChange }
           />
         </label>
-        <label htmlFor="save">
-          <input
-            data-testid="save-button"
-            id="save"
-            type="button"
-            disabled={ isSaveButtonDisabled }
-            onClick={ onSaveButtonClick }
-          />
-        </label>
+        <button
+          data-testid="save-button"
+          type="button"
+          name="btn"
+          disabled={ isSaveButtonDisabled }
+          onClick={ onSaveButtonClick }
+        >
+          Salvar
+        </button>
       </form>
     );
   }
