@@ -32,17 +32,27 @@ class App extends React.Component {
 
     const maxNumerSum = 210;
     const sum = Number(attr1) + Number(attr2) + Number(attr3);
-    const valudateSum = sum < maxNumerSum;
+    const valudateSum = sum <= maxNumerSum;
 
     const maxNumer = 90;
-    const verifyAttr1LessMax = attr1 <= maxNumer && attr1 > 0;
-    const verifyAttr2LessMax = attr2 <= maxNumer && attr2 > 0;
-    const verifyAttr3LessMax = attr3 <= maxNumer && attr3 > 0;
+    const verifyAttr1LessMax = attr1 <= maxNumer;
+    const verifyAttr2LessMax = attr2 <= maxNumer;
+    const verifyAttr3LessMax = attr3 <= maxNumer;
     const ferifyImputsAttr = verifyAttr1LessMax
     && verifyAttr2LessMax
     && verifyAttr3LessMax;
 
-    const verifyBtn = validateNotEmpty && valudateSum && ferifyImputsAttr;
+    const attr1GreaterZero = attr1 >= 0;
+    const attr2GreaterZero = attr2 >= 0;
+    const attr3GreaterZero = attr3 >= 0;
+    const verifyAttr3GreaterZero = attr1GreaterZero
+     && attr2GreaterZero
+     && attr3GreaterZero;
+
+    const verifyBtn = validateNotEmpty
+    && valudateSum
+    && verifyAttr3GreaterZero
+    && ferifyImputsAttr;
 
     this.setState({
       btn: !verifyBtn,
