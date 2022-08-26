@@ -13,7 +13,6 @@ class App extends React.Component {
     options: 'normal',
     confirm: false,
     btn: true,
-    arr: [],
   };
 
   handleChange = ({ target }) => {
