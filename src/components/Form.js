@@ -54,7 +54,7 @@ class Form extends React.Component {
             id="attr3"
             name="attr3"
             type="number"
-            cardAttr3={ cardAttr3 }
+            value={ cardAttr3 }
             onChange={ onInputChange }
           />
         </label>

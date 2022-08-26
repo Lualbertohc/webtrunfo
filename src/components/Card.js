@@ -11,8 +11,8 @@ class Card extends React.Component {
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <p data-testid="description-card">{ cardDescription }</p>
         <h2 data-testid="attr1-card">{ `Atributo ${cardAttr1}` }</h2>
-        <h2 data-testid="attr2-card">{ cardAttr2 }</h2>
-        <h2 data-testid="attr3-card">{ cardAttr3 }</h2>
+        <h2 data-testid="attr2-card">{ `Atributo ${cardAttr2}` }</h2>
+        <h2 data-testid="attr3-card">{ `Atributo ${cardAttr3}` }</h2>
         <h1 data-testid="rare-card">{ cardRare }</h1>
         {
           (cardTrunfo) && <p data-testid="trunfo-card">Super Trunfo</p>
