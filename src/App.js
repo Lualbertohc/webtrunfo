@@ -13,6 +13,7 @@ class App extends React.Component {
     options: 'normal',
     confirm: false,
     btn: true,
+    arr: [],
   };
 
   handleChange = ({ target }) => {
@@ -27,8 +28,8 @@ class App extends React.Component {
     const { name, description, image, attr1, attr2, attr3 } = this.state;
 
     const validateNotEmpty = name.length > 0
-      && description.length > 0
-      && image.length > 0;
+    && description.length > 0
+    && image.length > 0;
 
     const maxNumerSum = 210;
     const sum = Number(attr1) + Number(attr2) + Number(attr3);
@@ -59,6 +60,18 @@ class App extends React.Component {
     });
   };
 
+  handleClick = () => {
+    this.setState({
+      name: '',
+      description: '',
+      image: '',
+      attr1: 0,
+      attr2: 0,
+      attr3: 0,
+      options: 'normal',
+    });
+  };
+
   render() {
     const { name, description, image, confirm, options } = this.state;
     const { attr1, attr2, attr3 } = this.state;
@@ -77,7 +90,7 @@ class App extends React.Component {
           cardTrunfo={ confirm }
           isSaveButtonDisabled={ btn }
           onInputChange={ this.handleChange }
-          onSaveButtonClick={ this.handleButton }
+          onSaveButtonClick={ this.handleClick }
         />
         <Card
           cardName={ name }
