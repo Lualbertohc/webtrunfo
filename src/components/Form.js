@@ -12,6 +12,7 @@ class Form extends React.Component {
           <input
             data-testid="name-input"
             id="name"
+            name="name"
             type="text"
             value={ cardName }
             onChange={ onInputChange }
@@ -21,6 +22,7 @@ class Form extends React.Component {
           <input
             data-testid="description-input"
             id="description"
+            name="description"
             type="textarea"
             value={ cardDescription }
             onChange={ onInputChange }
@@ -30,8 +32,9 @@ class Form extends React.Component {
           <input
             data-testid="attr1-input"
             id="attr1"
+            name="attr1"
             type="number"
-            valeu={ cardAttr1 }
+            value={ cardAttr1 }
             onChange={ onInputChange }
           />
         </label>
@@ -39,6 +42,7 @@ class Form extends React.Component {
           <input
             data-testid="attr2-input"
             id="attr2"
+            name="attr2"
             type="number"
             value={ cardAttr2 }
             onChange={ onInputChange }
@@ -48,6 +52,7 @@ class Form extends React.Component {
           <input
             data-testid="attr3-input"
             id="attr3"
+            name="attr3"
             type="number"
             cardAttr3={ cardAttr3 }
             onChange={ onInputChange }
@@ -57,6 +62,7 @@ class Form extends React.Component {
           <input
             data-testid="image-input"
             id="image"
+            name="image"
             type="text"
             value={ cardImage }
             onChange={ onInputChange }
@@ -66,18 +72,20 @@ class Form extends React.Component {
           <select
             data-testid="rare-input"
             id="rare"
+            name="options"
             value={ cardRare }
             onChange={ onInputChange }
           >
-            <option value="normal">normal</option>
-            <option value="raro">raro</option>
-            <option value="muito raro">muito raro</option>
+            <option>normal</option>
+            <option>raro</option>
+            <option>muito raro</option>
           </select>
         </label>
         <label htmlFor="trunfo">
           <input
             data-testid="trunfo-input"
             id="trunfo"
+            name="confirm"
             type="checkbox"
             checked={ cardTrunfo }
             onChange={ onInputChange }
@@ -106,7 +114,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  hasTrunfo: PropTypes.bool.isRequired,
+  // hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
