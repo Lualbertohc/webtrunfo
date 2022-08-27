@@ -13,6 +13,7 @@ class App extends React.Component {
     options: 'normal',
     confirm: false,
     btn: true,
+    trunfo: '',
   };
 
   handleChange = ({ target }) => {
@@ -69,12 +70,20 @@ class App extends React.Component {
       attr3: 0,
       options: 'normal',
     });
+    this.setState((preview) => {
+      if (preview.confirm) {
+        return ({ trunfo: true });
+      }
+
+      return ({ trunfo: false });
+    });
   };
 
   render() {
     const { name, description, image, confirm, options } = this.state;
     const { attr1, attr2, attr3 } = this.state;
     const { btn } = this.state;
+    const { trunfo } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -88,6 +97,7 @@ class App extends React.Component {
           cardRare={ options }
           cardTrunfo={ confirm }
           isSaveButtonDisabled={ btn }
+          hasTrunfo={ trunfo }
           onInputChange={ this.handleChange }
           onSaveButtonClick={ this.handleClick }
         />
