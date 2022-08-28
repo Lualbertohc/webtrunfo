@@ -14,6 +14,7 @@ class App extends React.Component {
     confirm: false,
     btn: true,
     trunfo: '',
+    save: [],
   };
 
   handleChange = ({ target }) => {
@@ -60,16 +61,10 @@ class App extends React.Component {
     });
   };
 
-  handleClick = () => {
-    this.setState({
-      name: '',
-      description: '',
-      image: '',
-      attr1: 0,
-      attr2: 0,
-      attr3: 0,
-      options: 'normal',
-    });
+  handleClick = (myInfo) => {
+    this.setState((prevState) => ({
+      save: [...prevState.save, myInfo],
+    }));
     this.setState((preview) => {
       if (preview.confirm) {
         return ({ trunfo: true });
@@ -111,6 +106,19 @@ class App extends React.Component {
           cardRare={ options }
           cardTrunfo={ confirm }
         />
+        {/* {
+          save.map((e) => (
+            <Card
+              key={ e }
+              cardName={ e.name }
+              cardDescription={ e.description }
+              cardImage={ e.image }
+              cardAttr1={ e.attr1 }
+              cardAttr2={ e.attr2 }
+              cardAttr3={ e.attr3 }
+              cardRare={ options }
+            />))
+        } */}
       </div>
     );
   }
