@@ -7,9 +7,9 @@ class App extends React.Component {
     name: '',
     description: '',
     image: '',
-    attr1: '',
-    attr2: '',
-    attr3: '',
+    attr1: '0',
+    attr2: '0',
+    attr3: '0',
     options: 'normal',
     confirm: false,
     btn: true,
@@ -27,15 +27,12 @@ class App extends React.Component {
 
   handleButton = () => {
     const { name, description, image, attr1, attr2, attr3 } = this.state;
-
     const validateNotEmpty = name.length > 0
     && description.length > 0
     && image.length > 0;
-
     const maxNumerSum = 210;
     const sum = Number(attr1) + Number(attr2) + Number(attr3);
     const valudateSum = sum <= maxNumerSum;
-
     const maxNumer = 90;
     const verifyAttr1LessMax = attr1 <= maxNumer;
     const verifyAttr2LessMax = attr2 <= maxNumer;
@@ -43,34 +40,50 @@ class App extends React.Component {
     const ferifyImputsAttr = verifyAttr1LessMax
     && verifyAttr2LessMax
     && verifyAttr3LessMax;
-
     const attr1GreaterZero = attr1 >= 0;
     const attr2GreaterZero = attr2 >= 0;
     const attr3GreaterZero = attr3 >= 0;
     const verifyAttr3GreaterZero = attr1GreaterZero
      && attr2GreaterZero
      && attr3GreaterZero;
-
     const verifyBtn = validateNotEmpty
     && valudateSum
     && verifyAttr3GreaterZero
     && ferifyImputsAttr;
-
     this.setState({
       btn: !verifyBtn,
     });
   };
 
   handleClick = (myInfo) => {
+    const { cardName, cardDescription, cardImage, cardRare, cardTrunfo } = myInfo;
+    const { cardAttr1, cardAttr2, cardAttr3 } = myInfo;
+    const card = {
+      name: cardName,
+      description: cardDescription,
+      image: cardImage,
+      attr1: cardAttr1,
+      attr2: cardAttr2,
+      attr3: cardAttr3,
+      options: cardRare,
+      confirm: cardTrunfo,
+    };
+    console.log(myInfo.save);
     this.setState((prevState) => ({
-      save: [...prevState.save, myInfo],
-    }));
-    this.setState((preview) => {
-      if (preview.confirm) {
-        return ({ trunfo: true });
-      }
 
-      return ({ trunfo: false });
+      save: [...prevState.save, card],
+
+    }), () => {
+      this.setState({
+        name: '',
+        description: '',
+        image: '',
+        attr1: '0',
+        attr2: '0',
+        attr3: '0',
+        options: 'normal',
+        confirm: false,
+      });
     });
   };
 
@@ -78,7 +91,7 @@ class App extends React.Component {
     const { name, description, image, confirm, options } = this.state;
     const { attr1, attr2, attr3 } = this.state;
     const { btn } = this.state;
-    const { trunfo } = this.state;
+    const { save } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -92,7 +105,7 @@ class App extends React.Component {
           cardRare={ options }
           cardTrunfo={ confirm }
           isSaveButtonDisabled={ btn }
-          hasTrunfo={ trunfo }
+          hasTrunfo={ save.some((e) => e.confirm === true) }
           onInputChange={ this.handleChange }
           onSaveButtonClick={ this.handleClick }
         />
@@ -106,22 +119,22 @@ class App extends React.Component {
           cardRare={ options }
           cardTrunfo={ confirm }
         />
-        {/* {
-          save.map((e) => (
+        {
+          save.map((e, i) => (
             <Card
-              key={ e }
+              key={ i }
               cardName={ e.name }
               cardDescription={ e.description }
               cardImage={ e.image }
               cardAttr1={ e.attr1 }
               cardAttr2={ e.attr2 }
               cardAttr3={ e.attr3 }
-              cardRare={ options }
+              cardRare={ e.options }
+              cardTrunfo={ e.confirm }
             />))
-        } */}
+        }
       </div>
     );
   }
 }
-
 export default App;

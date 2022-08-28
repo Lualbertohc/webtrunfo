@@ -105,7 +105,7 @@ class Form extends React.Component {
         <button
           data-testid="save-button"
           type="button"
-          name="btn"
+          name="isSaveButtonDisabled"
           disabled={ isSaveButtonDisabled }
           onClick={
             () => onSaveButtonClick({
@@ -124,7 +124,6 @@ class Form extends React.Component {
     );
   }
 }
-
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
@@ -139,5 +138,4 @@ Form.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
 };
-
 export default Form;
