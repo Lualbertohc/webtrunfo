@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 class Card extends React.Component {
   render() {
-    const { cardName, cardImage, cardDescription, cardRare, cardTrunfo } = this.props;
-    const { cardAttr1, cardAttr2, cardAttr3 } = this.props;
+    const {
+      cardName, cardImage, cardDescription,
+      cardRare, cardTrunfo, cardAttr1, cardAttr2, cardAttr3,
+    } = this.props;
     return (
       <div>
         <h1 data-testid="name-card">{ cardName }</h1>
@@ -15,7 +17,7 @@ class Card extends React.Component {
         <h2 data-testid="attr3-card">{ `Atributo ${cardAttr3}` }</h2>
         <h1 data-testid="rare-card">{ cardRare }</h1>
         {
-          (cardTrunfo) && <p data-testid="trunfo-card">Super Trunfo</p>
+          cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : <p>Normal</p>
         }
       </div>
     );

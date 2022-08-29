@@ -13,13 +13,12 @@ class App extends React.Component {
     options: 'normal',
     confirm: false,
     btn: true,
-    trunfo: '',
     save: [],
   };
 
   handleChange = ({ target }) => {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const { name, type } = target;
+    const value = type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
     }, () => this.handleButton());
@@ -56,8 +55,11 @@ class App extends React.Component {
   };
 
   handleClick = (myInfo) => {
-    const { cardName, cardDescription, cardImage, cardRare, cardTrunfo } = myInfo;
-    const { cardAttr1, cardAttr2, cardAttr3 } = myInfo;
+    const {
+      cardName, cardDescription, cardImage,
+      cardRare, cardTrunfo, cardAttr1,
+      cardAttr2, cardAttr3, isSaveButtonDisabled,
+    } = myInfo;
     const card = {
       name: cardName,
       description: cardDescription,
@@ -67,8 +69,8 @@ class App extends React.Component {
       attr3: cardAttr3,
       options: cardRare,
       confirm: cardTrunfo,
+      btn: isSaveButtonDisabled,
     };
-    console.log(myInfo.save);
     this.setState((prevState) => ({
 
       save: [...prevState.save, card],
@@ -83,15 +85,17 @@ class App extends React.Component {
         attr3: '0',
         options: 'normal',
         confirm: false,
+        btn: true,
       });
     });
   };
 
   render() {
-    const { name, description, image, confirm, options } = this.state;
-    const { attr1, attr2, attr3 } = this.state;
-    const { btn } = this.state;
-    const { save } = this.state;
+    const {
+      name, description, image,
+      confirm, options, attr1,
+      attr2, attr3, btn, save,
+    } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>

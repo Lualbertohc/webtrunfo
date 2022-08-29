@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
-    const { cardName, cardDescription, cardImage, cardRare, cardTrunfo } = this.props;
-    const { cardAttr1, cardAttr2, cardAttr3 } = this.props;
-    const { onInputChange, isSaveButtonDisabled, onSaveButtonClick } = this.props;
-    const { hasTrunfo } = this.props;
+    const {
+      cardName, cardDescription, cardImage,
+      cardRare, cardTrunfo, cardAttr1,
+      cardAttr2, cardAttr3, onInputChange,
+      isSaveButtonDisabled, onSaveButtonClick, hasTrunfo,
+    } = this.props;
     return (
       <form>
         <label htmlFor="name">
@@ -89,23 +91,25 @@ class Form extends React.Component {
             <option>muito raro</option>
           </select>
         </label>
-        <label htmlFor="trunfo">
-          Trunfo:
-          {
-            (hasTrunfo) ? <p>Você já tem um Super Trunfo em seu baralho</p> : <input
-              data-testid="trunfo-input"
-              id="trunfo"
-              name="confirm"
-              type="checkbox"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-          }
-        </label>
+        {
+          hasTrunfo === true ? <p>Você já tem um Super Trunfo em seu baralho</p>
+            : (
+              <label htmlFor="confirm">
+                Trunfo:
+                <input
+                  data-testid="trunfo-input"
+                  id="confirm"
+                  name="confirm"
+                  type="checkbox"
+                  checked={ cardTrunfo }
+                  onChange={ onInputChange }
+                />
+              </label>)
+        }
         <button
           data-testid="save-button"
           type="button"
-          name="isSaveButtonDisabled"
+          name="btn"
           disabled={ isSaveButtonDisabled }
           onClick={
             () => onSaveButtonClick({
@@ -115,7 +119,10 @@ class Form extends React.Component {
               cardAttr1,
               cardAttr2,
               cardAttr3,
-              cardRare })
+              cardRare,
+              isSaveButtonDisabled,
+              cardTrunfo,
+            })
           }
         >
           Salvar
